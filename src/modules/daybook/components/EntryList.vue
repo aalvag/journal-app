@@ -1,5 +1,31 @@
 <template>
-  <div class="entry-list">
-    <h1>Entry List</h1>
+  <div class="entry-list-container">
+    <div>
+      <input type="text" class="form-control" placeholder="Search..." aria-label="search" />
+    </div>
+    <div class="entry-scrollarea">
+      <EntryOne v-for="item in 100" :key="item" />
+    </div>
   </div>
 </template>
+
+<script>
+import { defineAsyncComponent } from "vue";
+export default {
+  components: {
+    EntryOne: defineAsyncComponent(() => import(/* webpackChunkName: "EntryOne" */ "./EntryOne.vue")),
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.entry-list-container {
+  border-right: 1px solid #2c3e50;
+  height: calc(100vh - 56px);
+}
+
+.entry-scrollarea {
+  height: calc(100vh - 110px);
+  overflow: scroll;
+}
+</style>
