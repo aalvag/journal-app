@@ -4,16 +4,29 @@
       <input type="text" class="form-control" placeholder="Search..." aria-label="search" />
     </div>
     <div class="entry-scrollarea">
-      <EntryOne v-for="item in 100" :key="item" />
+      <EntryOne v-for="entry in entriesByTerm" :key="entry.id" :entry="entry" />
     </div>
   </div>
 </template>
 
 <script>
 import { defineAsyncComponent } from "vue";
+import { mapGetters } from "vuex";
+
 export default {
   components: {
     EntryOne: defineAsyncComponent(() => import(/* webpackChunkName: "EntryOne" */ "./EntryOne.vue")),
+  },
+  computed: {
+    ...mapGetters("journal", ["getEntriesByTerm"]),
+    entriesByTerm() {
+      return this.getEntriesByTerm(this.term);
+    },
+  },
+  data() {
+    return {
+      term: "",
+    };
   },
 };
 </script>

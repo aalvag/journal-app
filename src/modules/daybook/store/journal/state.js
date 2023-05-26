@@ -2,19 +2,19 @@ export default () => ({
   isLoading: true,
   entries: [
     {
-      id: new Date().getTime(),
+      id: 1,
       date: new Date().toDateString(),
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+      text: "Hola mundo //#endregion Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Hola mundo //#endregion Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.Hola mundo //#endregion Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.Hola mundo //#endregion Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.Hola mundo //#endregion Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.Hola mundo //#endregion Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.Hola mundo //#endregion Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.Hola mundo //#endregion Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.Hola mundo //#endregion Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.Hola mundo //#endregion Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
       picture: null,
     },
     {
-      id: new Date().getTime() + 1000,
+      id: 2,
       date: new Date().toDateString(),
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+      text: "que tal",
       picture: null,
     },
     {
-      id: new Date().getTime() + 2000,
+      id: 3,
       date: new Date().toDateString(),
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
       picture: null,
