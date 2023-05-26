@@ -7,11 +7,19 @@
         <span class="mx-2 fs-4 fw-light">{{ yearDay }}</span>
       </div>
       <div>
+        <input
+          type="file"
+          aria-label="upload"
+          v-show="false"
+          @change="onFileChange"
+          ref="imageSelector"
+          accept="image/png, image/jpeg"
+        />
         <button v-if="entry.id" @click="onDeleteEntry(entry.id)" class="btn btn-danger mx-2">
           Delete
           <i class="fas fa-trash"></i>
         </button>
-        <button class="btn btn-primary">
+        <button class="btn btn-primary" @click="onSelectedFile">
           Upload
           <i class="fas fa-upload"></i>
         </button>
@@ -23,13 +31,15 @@
     </div>
   </template>
   <FollowActionButton icon="fas fa-save" @on:click="saveEntry" />
-  <img src="https://picsum.photos/200/300" alt="Random image" class="img-thumbnail" />
+  <img v-if="entry && !localImage" :src="entry.picture" alt="entry image" class="img-thumbnail" />
+  <img v-if="localImage" :src="localImage" alt="load image" class="img-thumbnail" />
 </template>
 
 <script>
 import { defineAsyncComponent } from "vue";
 import { mapActions, mapGetters } from "vuex";
 import Swal from "sweetalert2";
+import uploadImage from "../helpers/uploadImage";
 
 import getDayMonthYear from "../helpers/getDayMonthYear";
 
@@ -46,6 +56,8 @@ export default {
   data() {
     return {
       entry: null,
+      localImage: null,
+      file: null,
     };
   },
   computed: {
@@ -88,6 +100,11 @@ export default {
         allowEnterKey: false,
         showConfirmButton: false,
       });
+      Swal.showLoading();
+      if (this.file) {
+        const picture = await uploadImage(this.file);
+        this.entry.picture = picture;
+      }
 
       if (this.entry.id) {
         await this.updateEntry(this.entry);
@@ -95,6 +112,8 @@ export default {
         const id = await this.createEntry(this.entry);
         this.$router.push({ name: "entry", params: { id } });
       }
+      this.file = null;
+
       Swal.close();
       Swal.fire({
         title: "Saved",
@@ -130,6 +149,18 @@ export default {
         timer: 2000,
         timerProgressBar: true,
       });
+    },
+    onFileChange(e) {
+      const file = e.target.files[0];
+      if (!file) {
+        this.localImage = null;
+        return;
+      }
+      this.file = file;
+      this.localImage = URL.createObjectURL(file);
+    },
+    onSelectedFile() {
+      this.$refs.imageSelector.click();
     },
   },
   created() {
