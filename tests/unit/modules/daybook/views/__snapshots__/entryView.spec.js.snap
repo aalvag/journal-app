@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Daybook Entry View must display the entry correctly 1`] = `
+<!--v-if-->
+<follow-action-button-stub icon="fas fa-save"></follow-action-button-stub>
+<!--v-if-->
+<!--v-if-->
+`;

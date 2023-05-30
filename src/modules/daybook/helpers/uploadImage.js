@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const uploadImage = async (file) => {
-  if (!file) return;
+  if (!file) return null;
   try {
     const cloudUrl = "https://api.cloudinary.com/v1_1/aalvag/image/upload";
 

@@ -44,6 +44,7 @@ import uploadImage from "../helpers/uploadImage";
 import getDayMonthYear from "../helpers/getDayMonthYear";
 
 export default {
+  name: "EntryView",
   props: {
     id: {
       type: String,
@@ -125,7 +126,7 @@ export default {
     async onDeleteEntry(id) {
       const result = await Swal.fire({
         title: "Are you sure?",
-        text: "You won't be able to revert this!",
+        text: "The entry will be deleted permanently",
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Yes, delete it!",
@@ -134,7 +135,7 @@ export default {
 
       if (!result.isConfirmed) return;
 
-      new Swal({
+      Swal.fire({
         title: "Wait a moment...",
         allowOutsideClick: false,
         allowEscapeKey: false,
